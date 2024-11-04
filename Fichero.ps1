@@ -64,5 +64,4 @@ function menu{
 #Main
 do{
     Menu
-    Clear-Host
 }while ($option -ne 7)
