@@ -1,27 +1,27 @@
 #1.Muestra las propiedades basicas del adaptador de red. (Get-Ne...)
 function getRed {
-    Get-NetAdapter;
+    Get-NetAdapter
 }
 #2. Muestra configuracion de la direccion IP, tanto IPv4 como IPv6 y las interfaces de red respectivas. (Get-NetIp...)
 function getIP{
-    Get-NetIPAddress;
+    Get-NetIPAddress
 }
 #3. Ejecuta comando Get-NetIPConfiguration, indicando que realiza.
 function getIPConfig{
-    Get-NetIPConfiguration;
-    write-host "Este comando muestra informacion sobre la configuracion IP de cada interfaz de red";
+    Get-NetIPConfiguration
+    write-host "Este comando muestra informacion sobre la configuracion IP de cada interfaz de red"
 }
 
 #4. Ejecuta comando Get-NetConnectionProfile
 function getIPCP{
-    Get-NetConnectionProfile;
+    Get-NetConnectionProfile
 }
 
 
 #5. Muestra la ruta que usan los paquetes en el proceso de envio y recepcion
 function testConnect{
-    $ruta=Read-Host "Dame la ruta quieres comprobar";
-    test-connection $ruta -traceroute;
+    $ruta=Read-Host "Dame la ruta quieres comprobar"
+    test-connection $ruta -traceroute
 }
 
 #6. Muestra la informacion detallada de cada adaptador indicando su estado, velocidad e identificador VLAN si posee alguno
@@ -31,18 +31,18 @@ function getAdapter{
 
 #7. Ejecuta tracert.
 function getTrace{
-    $ruta=Read-Host "Dame una direccion ip o nombre de dominio";
-    tracert $ruta;
+    $ruta=Read-Host "Dame una direccion ip o nombre de dominio"
+    tracert $ruta
 }
 
 #8. Comprueba el estado de los puertos abiertos del equipo
 function tryPort{
-    Get-NetTCPConnection;
+    Get-NetTCPConnection
 }
 #9. Ejecutar NSLOKKUP. ¿Que realiza este comando?
 function getNS{
-    $ruta=Read-Host "Dame una direccion ip o nombre de dominio";
-    nslookup $ruta;
+    $ruta=Read-Host "Dame una direccion ip o nombre de dominio"
+    nslookup $ruta
 }
 
 #10. Comprueba el estado actual de la red (Get-NetTC....)
@@ -59,8 +59,15 @@ function getAdapter2{
 }
 
 #13. Realizar un test de los puertos de nuestro sistema.
-
+function testPort{
+    $puerto=Read-Host "Que puerto quieres comprobar"
+    test-netconnection -ComputerName localhost -Port $puerto
+}
 #14. Obtener la direccion MAC de nuestra interfaz de red. Investiga la posibilidad de cambiar la misma
+function getMAC{
+    Get-NetAdapter | Format-Table Name,MacAddress
+    Write-Host "Si quieres cambiar la MAC, tienes que ir al administrador de dispositivos, adaptadores de red y click derecho propiedades, vamos a opciones avanzadas y buscamos Locally Administered Address y si cambiamos el valor ahi conseguimos una nueva MAC despues de reiniciar el equipo"
+}
 
 
 #salir
@@ -101,8 +108,8 @@ function menu{
         10{tryRed}
         11{getRuta}
         12{getAdapter2}
-        13{}
-        14{}
+        13{testPort}
+        14{getMAC}
         15{salir}
         default{Write-Output "Error numero fuera del rango del menu, pulse 7 para salir"}
     }
