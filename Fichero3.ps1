@@ -33,15 +33,15 @@ function stopComputer{
 #7. Crear una barra de progreso
 function progressBar{
     $progress = 0
-    $durationInSeconds = 100
-    $interval = $durationInSeconds / 100  # Intervalo en segundos para cada porcentaje
-
+    $durationInSeconds = 10
+    $interval = $durationInSeconds * 1000 / 100  # Intervalo en milisegundos para cada porcentaje
+    
     while ($progress -lt 100) {
         $progress++
         Write-Progress -PercentComplete $progress -Status "Procesando" -Activity "$progress de 100"
-        Start-Sleep -Milliseconds ($interval * 1000)
+        Start-Sleep -Milliseconds $interval
     }
-    Write-Host "Proceso completado."
+    Write-Host "Proceso completado."    
 
 }
 #salir
@@ -53,8 +53,8 @@ exit
 function menu{
     Write-Output "Elige la opción:
     1. Listado de puertos UDP abiertos. 
-    2. Ver los bytes enviados y recibidos por la interfaz wifi
-    3. Mostrar los procesos que se estan ejecutando en el sistema
+    2. Deshabilitar elementos del adaptador de red.
+    3. Ver los bytes enviados y recibidos por la interfaz wifi
     4. Obtener dirección IP del adaptador wifi.
     5. Ver la tabla de enrutamiento de IPv4.
     6. Realizar un apagado programado de otra máquina.
