@@ -9,7 +9,7 @@ function listBlock{
 #3. Muestra las aplicaciones instaladas en nuestra máquina.
 #2. Liste las cuentas de usuarios bloqueados.
 function listApps{
-    Get-WmiObject -Class Win32_Product| Select-Object -Property Name
+    Get-WmiObject -Class Win32_Product | Select-Object -Property Name
 }
 #4. Mostrar una barra de progreso antes de mostrar la información de nuestra máquina.
 
